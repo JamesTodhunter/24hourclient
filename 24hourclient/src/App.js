@@ -30,12 +30,16 @@ const App = () => {
 
   return (
     <div className="App">
+
       <button onClick={getLocation}>Get Location</button>
       <h1>Coordinates</h1>
       <p>{status}</p>
       {lat && <p>Latitude: {lat}</p>}
       {lon && <p>Longitude: {lon}</p>}
       <TicketMaster lat={lat} lon={lon}/>
+
+      <h1>Hello!</h1>
+
     </div>
   );
 
