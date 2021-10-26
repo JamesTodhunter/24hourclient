@@ -40,7 +40,8 @@ const App = () => {
       {lat && <p>Latitude: {lat}</p>}
       {lon && <p>Longitude: {lon}</p>}
       <Nasa lat={lat} lon={lon}/>
-      <Weather lat={lat} lon={lon}/>
+      <Weather lat={lat} lon={lon}
+      <h1>Hello!</h1>
     </div>
   );
 }
