@@ -1,40 +1,49 @@
-import React, {useState, useEffect} from 'react'
+import React, {useState, useEffect} from 'react';
 
 
-const TicketMaster = ({lat, lon}) => {
-    const [events, setEvents] = useState([])
-    const [Lat, setLat] = useState(lat | 39.78)
-    const [Lon, setLon] = useState(lon | -86.30)
-    const Geohash = 'dp4dp'
+const Ticketmaster = () => {
+    const [lat, setLat] = useState(null);
+    const [lon, setLon] = useState(null);
+    const [status, setStatus] = useState(null);
+    const [eventList, setEventList] = useState([]);
+    
+    const getLocation = () => {
+        if (!navigator.geolocation) {
+            setStatus('Geolocation not available by your browser');
+        } else {
+            setStatus('...Locating...');
+            navigator.geolocation.getCurrentPosition((position) => {
+                setStatus(null);
+                setLat(position.coords.latitude);
+                setLon(position.coords.longitude);
+            }, () => {
+                setStatus('Unable to retrieve your location');
+            });
+        }
+    }
 
     useEffect(() => {
 
-        const URL = `https://app.ticketmaster.com/discovery/v2/events.json?apikey=EHnbpJwE9fhM1FdYk7kY9JpQi0I1MG0h${Geohash}`
+    const URL = 'https://app.ticketmaster.com/discovery/v2/events.json?apikey=EHnbpJwE9fhM1FdYk7kY9JpQi0I1MG0h&latlong='+`${lat},${lon}`
 
-        console.log(URL)
+    if (lat && lon ){
         fetch(URL)
-            .then(res => res.json())
-            .then(json => {
+        .then(response => response.json())
+        .then(data => setEventList(data._embedded.events));
+      }
+    }, [lat, lon]);
 
-                let myArr = json.page.map(page => {
-                    return {
-                        page: page.page,
-
-                    }
-                })
-            }) 
-            .catch(() => console.error("Failed to get TicketMaster API Fetch Failed"))
-
-    }, [])
-
-    return (
-        <div className='main'>
-            <ul 
-            id='event-name'>
-            </ul>
+    return(
+        <div id="app">
+            <h1>TicketMaster</h1>
+            <button onClick={getLocation}>Events Near You</button>
+            <p>{status}</p>
             <br />
-        </div>
-    )
+            <div>
+               {eventList.map(event => <div><h2>{event.name}</h2></div>)}   
+            </div>
+        </div> 
+    );
 }
 
-export default TicketMaster
+export default Ticketmaster;
