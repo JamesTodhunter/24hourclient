@@ -11,7 +11,6 @@ import Nasa from './components/Nasa'
 // } from 'react-router-dom';
 
 function App() {
-
   return(
     <div>
       <Nasa />
@@ -19,6 +18,11 @@ function App() {
       <Sidebar />  */}
       {/* <Router /> */}
       {/* <Footer /> */}
+
+  return (
+    <div className="App">
+      <h1>Hello!</h1>
+
     </div>
   );
 }
