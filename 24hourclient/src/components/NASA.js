@@ -1,6 +1,5 @@
 import React, { useState, useEffect} from 'react';
-
-const NASA = (props) => {
+const Nasa = (props) => {
   const [NASAImg, setNASAImg] = useState('');
   const [lat, setLat] = useState(null);
   const [lon, setLon] = useState(null);
@@ -8,16 +7,13 @@ const NASA = (props) => {
   const latlon = lat + lon;
 function getNASAImg() {
   const URL = `https://api.nasa.gov/planetary/earth/imagery?lon=${lon}&lat=${lat}&date=2020-02-01&api_key=y4xQkSwBaU3vFiHj73Ue3EOHcdcRXCzoglUBqy8f`;
-  
   fetch(URL).then((res) => setNASAImg(res.url));
 }
-
 useEffect(() => {
   if (lat&&lon) {
     getNASAImg();
   }
 }, [lat,lon]);
-
 const getLocation = () => {
   if (!navigator.geolocation) {
     setStatus('Geolocation is not supported by your browser');
@@ -36,7 +32,6 @@ const getLocation = () => {
     );
   }
 };
-
 return(
   <div id="app">
     <h1>Nasa Satellite Image</h1>
@@ -49,5 +44,4 @@ return(
   </div>
 );
 };
-
-export default NASA;
+export default Nasa;

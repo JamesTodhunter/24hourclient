@@ -1,19 +1,25 @@
 import React from 'react';
 import 'bootstrap/dist/css/bootstrap.css';
-import Header from './components/Webpage/Header';
-import Footer from './components/Webpage/Footer';
-import Sidebar from './components/Webpage/Sidebar';
+// import Header from './components/Webpage/Header';
+// import Footer from './components/Webpage/Footer';
+// import Sidebar from './components/Webpage/Sidebar';
+import Ticketmaster from './components/Ticketmaster';
+import Weather from './components/Weather';
+import Nasa from './components/Nasa';
 
-import {
-  BrowserRouter as Router,
-} from 'react-router-dom';
+
+
+
 
 function App() {
   return (
     <div>
-      <Header />
+      {/* <Header />
       <Footer />
-      <Sidebar />
+      <Sidebar /> */}
+      <Ticketmaster/>
+      <Weather/>
+      <Nasa/>
 
     </div>
   )
