@@ -4,7 +4,7 @@ import './App.css';
 // import Header from './components/site/Header'
 // import Footer from './components/site/Footer'
 // import Sidebar from './components/site/Sidebar'
-import NASA from './components/NASA'
+import Nasa from './components/Nasa'
 
 // import {
 //   BrowserRouter as Router,
@@ -14,7 +14,7 @@ function App() {
 
   return(
     <div>
-      <NASA />
+      <Nasa />
       {/* <Header />
       <Sidebar />  */}
       {/* <Router /> */}
